@@ -1,0 +1,32 @@
+[
+  {
+    "Id": "a811092b-080c-4550-82e8-f60c23652da0",
+    "Name": "\u6FC0\u5149\u56681",
+    "PortName": "COM1",
+    "BaudRate": 115200,
+    "IsEnabled": true,
+    "Model": 0,
+    "DeviceAddress": 1,
+    "HwdPowerScale": 0
+  },
+  {
+    "Id": "2a52c3c9-18e0-4007-8247-73d77f22f157",
+    "Name": "\u6FC0\u5149\u56682",
+    "PortName": "COM1",
+    "BaudRate": 115200,
+    "IsEnabled": true,
+    "Model": 0,
+    "DeviceAddress": 1,
+    "HwdPowerScale": 0
+  },
+  {
+    "Id": "2f7be7df-c894-4e66-afea-11cf58b75cd3",
+    "Name": "\u6FC0\u5149\u56683",
+    "PortName": "COM1",
+    "BaudRate": 115200,
+    "IsEnabled": true,
+    "Model": 1,
+    "DeviceAddress": 1,
+    "HwdPowerScale": 0
+  }
+]

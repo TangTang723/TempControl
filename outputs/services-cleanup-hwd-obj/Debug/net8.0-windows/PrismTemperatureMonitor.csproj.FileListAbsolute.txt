@@ -1,0 +1,17 @@
+C:\Users\邹小滔\Documents\Codex\2026-06-03\prism\outputs\services-cleanup-hwd-obj\Debug\net8.0-windows\PrismTemperatureMonitor.csproj.AssemblyReference.cache
+C:\Users\邹小滔\Documents\Codex\2026-06-03\prism\outputs\services-cleanup-hwd-obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\邹小滔\Documents\Codex\2026-06-03\prism\outputs\services-cleanup-hwd-obj\Debug\net8.0-windows\Views\LaserParametersView.baml
+C:\Users\邹小滔\Documents\Codex\2026-06-03\prism\outputs\services-cleanup-hwd-obj\Debug\net8.0-windows\Views\RecipeView.baml
+C:\Users\邹小滔\Documents\Codex\2026-06-03\prism\outputs\services-cleanup-hwd-obj\Debug\net8.0-windows\Views\TemperatureMonitorView.baml
+C:\Users\邹小滔\Documents\Codex\2026-06-03\prism\outputs\services-cleanup-hwd-obj\Debug\net8.0-windows\App.baml
+C:\Users\邹小滔\Documents\Codex\2026-06-03\prism\outputs\services-cleanup-hwd-obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\邹小滔\Documents\Codex\2026-06-03\prism\outputs\services-cleanup-hwd-obj\Debug\net8.0-windows\Views\LaserParametersView.g.cs
+C:\Users\邹小滔\Documents\Codex\2026-06-03\prism\outputs\services-cleanup-hwd-obj\Debug\net8.0-windows\Views\RecipeView.g.cs
+C:\Users\邹小滔\Documents\Codex\2026-06-03\prism\outputs\services-cleanup-hwd-obj\Debug\net8.0-windows\Views\TemperatureMonitorView.g.cs
+C:\Users\邹小滔\Documents\Codex\2026-06-03\prism\outputs\services-cleanup-hwd-obj\Debug\net8.0-windows\App.g.cs
+C:\Users\邹小滔\Documents\Codex\2026-06-03\prism\outputs\services-cleanup-hwd-obj\Debug\net8.0-windows\PrismTemperatureMonitor_MarkupCompile.cache
+C:\Users\邹小滔\Documents\Codex\2026-06-03\prism\outputs\services-cleanup-hwd-obj\Debug\net8.0-windows\PrismTemperatureMonitor.g.resources
+C:\Users\邹小滔\Documents\Codex\2026-06-03\prism\outputs\services-cleanup-hwd-obj\Debug\net8.0-windows\PrismTemperatureMonitor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\邹小滔\Documents\Codex\2026-06-03\prism\outputs\services-cleanup-hwd-obj\Debug\net8.0-windows\PrismTemperatureMonitor.AssemblyInfoInputs.cache
+C:\Users\邹小滔\Documents\Codex\2026-06-03\prism\outputs\services-cleanup-hwd-obj\Debug\net8.0-windows\PrismTemperatureMonitor.AssemblyInfo.cs
+C:\Users\邹小滔\Documents\Codex\2026-06-03\prism\outputs\services-cleanup-hwd-obj\Debug\net8.0-windows\PrismTemperatureMonitor.csproj.CoreCompileInputs.cache

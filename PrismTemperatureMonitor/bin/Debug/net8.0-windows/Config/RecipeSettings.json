@@ -1,0 +1,85 @@
+{
+  "plcIpAddress": "192.168.0.12",
+  "recipes": [
+    {
+      "code": "R001",
+      "name": "150H-B",
+      "startByteOffset": 8
+    },
+    {
+      "code": "R002",
+      "name": "150H-B002",
+      "startByteOffset": 64
+    },
+    {
+      "code": "R003",
+      "name": "180H-C001",
+      "startByteOffset": 128
+    },
+    {
+      "code": "R004",
+      "name": "\u539A\u7247\u914D\u65B9-04",
+      "startByteOffset": 192
+    },
+    {
+      "code": "R005",
+      "name": "\u539A\u7247\u914D\u65B9-05",
+      "startByteOffset": 256
+    },
+    {
+      "code": "R006",
+      "name": "\u539A\u7247\u914D\u65B9-06",
+      "startByteOffset": 320
+    },
+    {
+      "code": "R007",
+      "name": "\u539A\u7247\u914D\u65B9-07",
+      "startByteOffset": 384
+    },
+    {
+      "code": "R008",
+      "name": "\u539A\u7247\u914D\u65B9-08",
+      "startByteOffset": 448
+    },
+    {
+      "code": "R009",
+      "name": "\u539A\u7247\u914D\u65B9-09",
+      "startByteOffset": 512
+    },
+    {
+      "code": "R010",
+      "name": "\u539A\u7247\u914D\u65B9-10",
+      "startByteOffset": 576
+    },
+    {
+      "code": "R011",
+      "name": "\u539A\u7247\u914D\u65B9-11",
+      "startByteOffset": 640
+    },
+    {
+      "code": "R012",
+      "name": "\u539A\u7247\u914D\u65B9-12",
+      "startByteOffset": 704
+    },
+    {
+      "code": "R013",
+      "name": "\u539A\u7247\u914D\u65B9-13",
+      "startByteOffset": 768
+    },
+    {
+      "code": "R014",
+      "name": "\u539A\u7247\u914D\u65B9-14",
+      "startByteOffset": 832
+    },
+    {
+      "code": "R015",
+      "name": "\u539A\u7247\u914D\u65B9-15",
+      "startByteOffset": 896
+    },
+    {
+      "code": "R016",
+      "name": "\u539A\u7247\u914D\u65B9-16",
+      "startByteOffset": 960
+    }
+  ]
+}

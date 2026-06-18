@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "PrismTemperatureMonitor": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\邹小滔\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\bin\\Debug\\net8.0-windows",
+      "remoteDebugEnabled": false,
+      "authenticationMode": "None",
+      "remoteDebugMachine": "USERMIC-HA68HQ0:4026"
+    }
+  }
+}

@@ -1,0 +1,461 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\prismtemperaturemonitor.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\prismtemperaturemonitor.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\viewmodels\\temperaturemonitorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\viewmodels\\temperaturemonitorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\services\\laser\\hwdlasersettingmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\services\\laser\\hwdlasersettingmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA7AFA1E-0729-4DE4-B4BE-DC77A9CD2314}|PrismTemperatureMonitor.Tests\\PrismTemperatureMonitor.Tests.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor.tests\\hwdlasersettingmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA7AFA1E-0729-4DE4-B4BE-DC77A9CD2314}|PrismTemperatureMonitor.Tests\\PrismTemperatureMonitor.Tests.csproj|solutionrelative:prismtemperaturemonitor.tests\\hwdlasersettingmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\models\\hwdlasersystemsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\models\\hwdlasersystemsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\viewmodels\\laserparametersviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\viewmodels\\laserparametersviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\services\\plc\\plcservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\services\\plc\\plcservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\services\\plc\\iplcservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\services\\plc\\iplcservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\services\\plc\\iplcclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\services\\plc\\iplcclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\models\\hwdlaserwavesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\models\\hwdlaserwavesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\views\\laserparametersview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\views\\laserparametersview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\views\\laserparametersview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\views\\laserparametersview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\viewmodels\\recipeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\viewmodels\\recipeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\views\\recipeview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\views\\recipeview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA7AFA1E-0729-4DE4-B4BE-DC77A9CD2314}|PrismTemperatureMonitor.Tests\\PrismTemperatureMonitor.Tests.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor.tests\\plcservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA7AFA1E-0729-4DE4-B4BE-DC77A9CD2314}|PrismTemperatureMonitor.Tests\\PrismTemperatureMonitor.Tests.csproj|solutionrelative:prismtemperaturemonitor.tests\\plcservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\models\\plcaddress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\models\\plcaddress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\models\\plcvaluetype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\models\\plcvaluetype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u90B9\u5C0F\u6ED4\\AppData\\Local\\Temp\\.vsdbgsrc\\9f99972438edcc13bd854664f5fd2f57c8b01641d5914a3fef49014c8a8e322b\\Object.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA7AFA1E-0729-4DE4-B4BE-DC77A9CD2314}|PrismTemperatureMonitor.Tests\\PrismTemperatureMonitor.Tests.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor.tests\\recipeviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA7AFA1E-0729-4DE4-B4BE-DC77A9CD2314}|PrismTemperatureMonitor.Tests\\PrismTemperatureMonitor.Tests.csproj|solutionrelative:prismtemperaturemonitor.tests\\recipeviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\prismtemperaturemonitor.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\prismtemperaturemonitor.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\models\\laserwavesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\models\\laserwavesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u90B9\u5C0F\u6ED4\\AppData\\Local\\SourceServer\\9948d5e6cc8881892fd10108ad1d2bd4472b8ea88af3e9e089d4eb9f773426f8\\src\\DryIoc\\Container.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\views\\temperaturemonitorview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\views\\temperaturemonitorview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|c:\\users\\\u90B9\u5C0F\u6ED4\\documents\\codex\\2026-06-03\\prism\\prismtemperaturemonitor\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79696185-B057-4105-9491-1F7258F5662D}|PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj|solutionrelative:prismtemperaturemonitor\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PrismTemperatureMonitor",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj",
+              "RelativeToolTip": "PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-06-17T02:33:26.594Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{c9c0ae26-aa77-11d2-b3f0-0000f87570ee}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HwdLaserSettingModel.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Services\\Laser\\HwdLaserSettingModel.cs",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\Services\\Laser\\HwdLaserSettingModel.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Services\\Laser\\HwdLaserSettingModel.cs",
+              "RelativeToolTip": "PrismTemperatureMonitor\\Services\\Laser\\HwdLaserSettingModel.cs",
+              "ViewState": "AgIAAIsBAAAAAAAAAAAjwJUBAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-16T08:05:51.381Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HwdLaserSystemSettings.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Models\\HwdLaserSystemSettings.cs",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\Models\\HwdLaserSystemSettings.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Models\\HwdLaserSystemSettings.cs",
+              "RelativeToolTip": "PrismTemperatureMonitor\\Models\\HwdLaserSystemSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-16T02:18:11.571Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TemperatureMonitorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\ViewModels\\TemperatureMonitorViewModel.cs",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\ViewModels\\TemperatureMonitorViewModel.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\ViewModels\\TemperatureMonitorViewModel.cs",
+              "RelativeToolTip": "PrismTemperatureMonitor\\ViewModels\\TemperatureMonitorViewModel.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAAwFUAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T10:51:40.776Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlcService.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Services\\Plc\\PlcService.cs",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\Services\\Plc\\PlcService.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Services\\Plc\\PlcService.cs",
+              "RelativeToolTip": "PrismTemperatureMonitor\\Services\\Plc\\PlcService.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAkwEUAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-16T02:21:54.496Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HwdLaserSettingModelTests.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor.Tests\\HwdLaserSettingModelTests.cs",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor.Tests\\HwdLaserSettingModelTests.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor.Tests\\HwdLaserSettingModelTests.cs",
+              "RelativeToolTip": "PrismTemperatureMonitor.Tests\\HwdLaserSettingModelTests.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAYwCoAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-10T00:39:59.437Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LaserParametersViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\ViewModels\\LaserParametersViewModel.cs",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\ViewModels\\LaserParametersViewModel.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\ViewModels\\LaserParametersViewModel.cs",
+              "RelativeToolTip": "PrismTemperatureMonitor\\ViewModels\\LaserParametersViewModel.cs",
+              "ViewState": "AgIAACMCAAAAAAAAAAAhwC8CAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-05T03:14:32.674Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IPlcClient.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Services\\Plc\\IPlcClient.cs",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\Services\\Plc\\IPlcClient.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Services\\Plc\\IPlcClient.cs",
+              "RelativeToolTip": "PrismTemperatureMonitor\\Services\\Plc\\IPlcClient.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-16T02:21:54.874Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IPlcService.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Services\\Plc\\IPlcService.cs",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\Services\\Plc\\IPlcService.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Services\\Plc\\IPlcService.cs",
+              "RelativeToolTip": "PrismTemperatureMonitor\\Services\\Plc\\IPlcService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-16T02:21:56.745Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "HwdLaserWaveSettings.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Models\\HwdLaserWaveSettings.cs",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\Models\\HwdLaserWaveSettings.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Models\\HwdLaserWaveSettings.cs",
+              "RelativeToolTip": "PrismTemperatureMonitor\\Models\\HwdLaserWaveSettings.cs",
+              "ViewState": "AgIAAJIAAAAAAAAAAAAuwD8AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T08:19:55.627Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "LaserParametersView.xaml",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Views\\LaserParametersView.xaml",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\Views\\LaserParametersView.xaml",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Views\\LaserParametersView.xaml",
+              "RelativeToolTip": "PrismTemperatureMonitor\\Views\\LaserParametersView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-03T07:16:32.703Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "LaserParametersView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Views\\LaserParametersView.xaml.cs",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\Views\\LaserParametersView.xaml.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Views\\LaserParametersView.xaml.cs",
+              "RelativeToolTip": "PrismTemperatureMonitor\\Views\\LaserParametersView.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T08:19:30.355Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "RecipeViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\ViewModels\\RecipeViewModel.cs",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\ViewModels\\RecipeViewModel.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\ViewModels\\RecipeViewModel.cs",
+              "RelativeToolTip": "PrismTemperatureMonitor\\ViewModels\\RecipeViewModel.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAWwGIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-04T02:52:37.972Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "RecipeView.xaml",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Views\\RecipeView.xaml",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\Views\\RecipeView.xaml",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Views\\RecipeView.xaml",
+              "RelativeToolTip": "PrismTemperatureMonitor\\Views\\RecipeView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-04T01:37:46.085Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PlcServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor.Tests\\PlcServiceTests.cs",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor.Tests\\PlcServiceTests.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor.Tests\\PlcServiceTests.cs",
+              "RelativeToolTip": "PrismTemperatureMonitor.Tests\\PlcServiceTests.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAWwF4AAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-10T06:37:16.356Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "PlcValueType.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Models\\PlcValueType.cs",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\Models\\PlcValueType.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Models\\PlcValueType.cs",
+              "RelativeToolTip": "PrismTemperatureMonitor\\Models\\PlcValueType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-10T06:43:47.351Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "PlcAddress.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Models\\PlcAddress.cs",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\Models\\PlcAddress.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Models\\PlcAddress.cs",
+              "RelativeToolTip": "PrismTemperatureMonitor\\Models\\PlcAddress.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-10T06:48:10.141Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Object.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\AppData\\Local\\Temp\\.vsdbgsrc\\9f99972438edcc13bd854664f5fd2f57c8b01641d5914a3fef49014c8a8e322b\\Object.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\9f99972438edcc13bd854664f5fd2f57c8b01641d5914a3fef49014c8a8e322b\\Object.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\AppData\\Local\\Temp\\.vsdbgsrc\\9f99972438edcc13bd854664f5fd2f57c8b01641d5914a3fef49014c8a8e322b\\Object.cs [\u53EA\u8BFB]",
+              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\9f99972438edcc13bd854664f5fd2f57c8b01641d5914a3fef49014c8a8e322b\\Object.cs [\u53EA\u8BFB]",
+              "ViewState": "AgIAABcAAAAAAAAAAAAowCUAAAABAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-10T06:38:40.609Z",
+              "EditorCaption": " [\u53EA\u8BFB]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "RecipeViewModelTests.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor.Tests\\RecipeViewModelTests.cs",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor.Tests\\RecipeViewModelTests.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor.Tests\\RecipeViewModelTests.cs",
+              "RelativeToolTip": "PrismTemperatureMonitor.Tests\\RecipeViewModelTests.cs",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAWwIYAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-10T06:37:23.601Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "PrismTemperatureMonitor.csproj",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj",
+              "RelativeToolTip": "PrismTemperatureMonitor\\PrismTemperatureMonitor.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-06-08T02:28:29.318Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "LaserWaveSettings.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Models\\LaserWaveSettings.cs",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\Models\\LaserWaveSettings.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Models\\LaserWaveSettings.cs",
+              "RelativeToolTip": "PrismTemperatureMonitor\\Models\\LaserWaveSettings.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAApwBEAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-09T08:55:28.917Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "TemperatureMonitorView.xaml",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Views\\TemperatureMonitorView.xaml",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\Views\\TemperatureMonitorView.xaml",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\Views\\TemperatureMonitorView.xaml",
+              "RelativeToolTip": "PrismTemperatureMonitor\\Views\\TemperatureMonitorView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-03T10:11:34.005Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\App.xaml",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\App.xaml",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\App.xaml",
+              "RelativeToolTip": "PrismTemperatureMonitor\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-03T07:31:03.599Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Container.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\AppData\\Local\\SourceServer\\9948d5e6cc8881892fd10108ad1d2bd4472b8ea88af3e9e089d4eb9f773426f8\\src\\DryIoc\\Container.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\SourceServer\\9948d5e6cc8881892fd10108ad1d2bd4472b8ea88af3e9e089d4eb9f773426f8\\src\\DryIoc\\Container.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\AppData\\Local\\SourceServer\\9948d5e6cc8881892fd10108ad1d2bd4472b8ea88af3e9e089d4eb9f773426f8\\src\\DryIoc\\Container.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\SourceServer\\9948d5e6cc8881892fd10108ad1d2bd4472b8ea88af3e9e089d4eb9f773426f8\\src\\DryIoc\\Container.cs",
+              "ViewState": "AgIAAPILAAAAAAAAAAAnwAAMAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T07:29:25.588Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\MainWindow.xaml",
+              "RelativeToolTip": "PrismTemperatureMonitor\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-04T03:12:04.584Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "MainWindowViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\ViewModels\\MainWindowViewModel.cs",
+              "RelativeDocumentMoniker": "PrismTemperatureMonitor\\ViewModels\\MainWindowViewModel.cs",
+              "ToolTip": "C:\\Users\\\u90B9\u5C0F\u6ED4\\Documents\\Codex\\2026-06-03\\prism\\PrismTemperatureMonitor\\ViewModels\\MainWindowViewModel.cs",
+              "RelativeToolTip": "PrismTemperatureMonitor\\ViewModels\\MainWindowViewModel.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAcwCEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T07:12:36.6Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 339,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
