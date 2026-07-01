@@ -26,6 +26,16 @@ public sealed class TemperatureMonitorViewModelTests
     }
 
     [Fact]
+    public void NewViewModel_ConnectsPlcOnStartup()
+    {
+        var plc = new RecordingTemperaturePlcService();
+
+        _ = CreateViewModel(plcService: plc);
+
+        Assert.Equal(1, plc.ConnectCount);
+    }
+
+    [Fact]
     public void AppendSample_WhileCollectingUsesTimestampForChartXValue()
     {
         var historyWriter = new RecordingTemperatureHistoryWriter();
@@ -136,10 +146,11 @@ public sealed class TemperatureMonitorViewModelTests
     public void LaserPanel_ListsOnlyConnectedDevicesAndSelectsFirst()
     {
         var laserService = new RecordingLaserCacheService();
+        var plc = new RecordingTemperaturePlcService();
         var first = laserService.AddDevice("激光器 1", LaserDeviceModel.HWQ, isConnected: true);
         laserService.AddDevice("激光器 2", LaserDeviceModel.HWD, isConnected: false);
 
-        var viewModel = CreateViewModel(laserService: laserService);
+        var viewModel = CreateViewModel(plcService: plc, laserService: laserService);
 
         viewModel.RefreshLaserDevicesForTest();
 
@@ -152,6 +163,7 @@ public sealed class TemperatureMonitorViewModelTests
     public void LaserPanel_RefreshesOnlySelectedDeviceCachedSnapshot()
     {
         var laserService = new RecordingLaserCacheService();
+        var plc = new RecordingTemperaturePlcService();
         var first = laserService.AddDevice("激光器 1", LaserDeviceModel.HWQ, isConnected: true);
         var second = laserService.AddDevice("激光器 2", LaserDeviceModel.HWD, isConnected: true);
         laserService.Snapshots[second.Id] = new LaserDisplaySnapshot
@@ -163,7 +175,7 @@ public sealed class TemperatureMonitorViewModelTests
             WaveNumber = 3
         };
 
-        var viewModel = CreateViewModel(laserService: laserService);
+        var viewModel = CreateViewModel(plcService: plc, laserService: laserService);
         viewModel.RefreshLaserDevicesForTest();
         laserService.SnapshotRequests.Clear();
 
@@ -173,6 +185,9 @@ public sealed class TemperatureMonitorViewModelTests
         Assert.All(laserService.SnapshotRequests, deviceId => Assert.Equal(second.Id, deviceId));
         Assert.DoesNotContain(first.Id, laserService.SnapshotRequests);
         Assert.Equal(18.5, viewModel.CurrentLaserSnapshot?.RealtimePower);
+        var write = Assert.Single(plc.FloatWrites);
+        Assert.Equal(TemperatureMonitorViewModel.PlcLaserRealtimePowerAddress, write.Address);
+        Assert.Equal(18.5f, write.Value);
         Assert.Equal(0, laserService.CommunicationReadCount);
     }
 
@@ -252,7 +267,7 @@ public sealed class TemperatureMonitorViewModelTests
         Assert.Equal("150H-B002", viewModel.SelectedTemperatureRecipe?.Name);
         var write = Assert.Single(plc.IntWrites);
         Assert.Equal(TemperatureMonitorViewModel.PlcRecipeIndexAddress, write.Address);
-        Assert.Equal(1, write.Value);
+        Assert.Equal(2, write.Value);
     }
 
     private static TemperatureMonitorViewModel CreateViewModel(
@@ -376,12 +391,17 @@ public sealed class TemperatureMonitorViewModelTests
 
         public List<(PlcAddress Address, int Value)> IntWrites { get; } = [];
 
+        public List<(PlcAddress Address, float Value)> FloatWrites { get; } = [];
+
+        public int ConnectCount { get; private set; }
+
         public string IpAddress { get; set; } = "192.168.0.10";
 
         public bool IsConnected { get; private set; } = true;
 
         public void Connect()
         {
+            ConnectCount++;
             IsConnected = true;
         }
 
@@ -421,6 +441,7 @@ public sealed class TemperatureMonitorViewModelTests
 
         public void WriteFloat(PlcAddress address, float value)
         {
+            FloatWrites.Add((address, value));
             FloatValues[address] = value;
         }
     }

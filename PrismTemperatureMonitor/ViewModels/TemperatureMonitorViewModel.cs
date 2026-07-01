@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
 using LiveChartsCore;
@@ -19,10 +20,11 @@ public sealed class TemperatureMonitorViewModel : BindableBase
     private const int SampleIntervalMilliseconds = 100;
 
     public const int MaxRenderedPointCount = 1_000;
-    public static readonly PlcAddress PlcAcquisitionStartAddress = new(1, 100, PlcValueType.Bool, 0);
-    public static readonly PlcAddress PlcTemperatureAddress = new(1, 104, PlcValueType.Float);
-    public static readonly PlcAddress PlcTemperatureResultAddress = new(1, 108, PlcValueType.Bool, 0);
-    public static readonly PlcAddress PlcRecipeIndexAddress = new(1, 110, PlcValueType.Int);
+    public static readonly PlcAddress PlcAcquisitionStartAddress = new(16, 102, PlcValueType.Bool, 1);
+    public static readonly PlcAddress PlcTemperatureAddress = new(8, 32, PlcValueType.Float);
+    public static readonly PlcAddress PlcTemperatureResultAddress = new(16, 102, PlcValueType.Bool, 4);
+    public static readonly PlcAddress PlcRecipeIndexAddress = new(16, 0, PlcValueType.Int);
+    public static readonly PlcAddress PlcLaserRealtimePowerAddress = new(16, 2, PlcValueType.Float);
 
     private readonly ObservableCollection<ObservablePoint> _temperatureValues = [];
     private readonly TemperatureChartBuffer _chartBuffer;
@@ -51,6 +53,8 @@ public sealed class TemperatureMonitorViewModel : BindableBase
     private TemperatureRecipeOption? _selectedTemperatureRecipe;
     private bool _lastPlcAcquisitionSignal;
     private bool _suppressRecipeIndexWrite;
+    private Guid? _lastSyncedLaserPowerDeviceId;
+    private double? _lastSyncedLaserPower;
     private string _laserSelectionMessage = "暂无已连接激光器";
 
     public TemperatureMonitorViewModel(
@@ -67,6 +71,7 @@ public sealed class TemperatureMonitorViewModel : BindableBase
         _axisStartTime = DateTime.Now;
         _latestSampleTime = _axisStartTime;
         LoadTemperatureRecipes();
+        ConnectPlcOnStartup();
 
         Series =
         [
@@ -119,7 +124,6 @@ public sealed class TemperatureMonitorViewModel : BindableBase
             Interval = TimeSpan.FromMilliseconds(SampleIntervalMilliseconds)
         };
         _sampleTimer.Tick += (_, _) => PollPlc();
-
         _laserSnapshotTimer = new DispatcherTimer(DispatcherPriority.Background)
         {
             Interval = TimeSpan.FromMilliseconds(200)
@@ -135,6 +139,7 @@ public sealed class TemperatureMonitorViewModel : BindableBase
         RefreshConnectedLaserDevices();
         _laserSnapshotTimer.Start();
         _laserDeviceListTimer.Start();
+        _sampleTimer.Start();
     }
 
     public ISeries[] Series { get; }
@@ -165,7 +170,7 @@ public sealed class TemperatureMonitorViewModel : BindableBase
 
             try
             {
-                _plcService.WriteInt(PlcRecipeIndexAddress, value.Index);
+                _plcService.WriteInt(PlcRecipeIndexAddress, value.Index+1);
             }
             catch
             {
@@ -337,14 +342,62 @@ public sealed class TemperatureMonitorViewModel : BindableBase
         LaserSelectionMessage = CurrentLaserSnapshot is null
             ? "等待激光器参数"
             : $"当前激光器：{SelectedLaserDevice.Name}";
+        SyncLaserRealtimePowerToPlc(CurrentLaserSnapshot);
+    }
+
+    private void ConnectPlcOnStartup()
+    {
+        try
+        {
+            _plcService.Connect();
+        }
+        catch
+        {
+            CollectionState = "PLC连接失败";
+            CollectionStateBrush = new SolidColorBrush(Color.FromRgb(239, 68, 68));
+        }
+    }
+
+    private void SyncLaserRealtimePowerToPlc(LaserDisplaySnapshot? snapshot)
+    {
+        if (snapshot is null)
+        {
+            _lastSyncedLaserPowerDeviceId = null;
+            _lastSyncedLaserPower = null;
+            return;
+        }
+
+        if (_lastSyncedLaserPowerDeviceId == snapshot.DeviceId &&
+            _lastSyncedLaserPower.HasValue &&
+            Math.Abs(_lastSyncedLaserPower.Value - snapshot.RealtimePower) < 0.0001)
+        {
+            return;
+        }
+
+        try
+        {
+            _plcService.WriteFloat(PlcLaserRealtimePowerAddress, (float)snapshot.RealtimePower);
+            _lastSyncedLaserPowerDeviceId = snapshot.DeviceId;
+            _lastSyncedLaserPower = snapshot.RealtimePower;
+        }
+        catch
+        {
+            CollectionState = "激光功率写入PLC失败";
+            CollectionStateBrush = new SolidColorBrush(Color.FromRgb(239, 68, 68));
+        }
     }
 
     private void PollPlc()
     {
         try
         {
+            if (!_plcService.IsConnected)
+            {
+                CollectionState = "PLC未连接";
+                CollectionStateBrush = new SolidColorBrush(Color.FromRgb(239, 68, 68));
+                return;
+            }
             var acquisitionSignal = _plcService.ReadBool(PlcAcquisitionStartAddress);
-
             if (acquisitionSignal && !_lastPlcAcquisitionSignal)
             {
                 ResetAcquisitionData();
