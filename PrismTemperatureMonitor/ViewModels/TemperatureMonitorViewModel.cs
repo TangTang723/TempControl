@@ -67,11 +67,12 @@ public sealed class TemperatureMonitorViewModel : BindableBase
         _laserDeviceService = laserDeviceService;
         _plcService = plcService;
         _recipeConfigStore = recipeConfigStore;
+        _recipeConfigStore.SettingsSaved += OnRecipeSettingsSaved;
         _chartBuffer = new TemperatureChartBuffer(_temperatureValues, MaxRenderedPointCount);
         _axisStartTime = DateTime.Now;
         _latestSampleTime = _axisStartTime;
         LoadTemperatureRecipes();
-        ConnectPlcOnStartup();
+        //ConnectPlcOnStartup();
 
         Series =
         [
@@ -525,7 +526,18 @@ public sealed class TemperatureMonitorViewModel : BindableBase
 
     private void LoadTemperatureRecipes()
     {
-        var savedRecipes = LoadSavedRecipeMetadata();
+        RefreshTemperatureRecipes(LoadSavedRecipeSettings());
+    }
+
+    private void OnRecipeSettingsSaved(object? sender, RecipeSettings settings)
+    {
+        RefreshTemperatureRecipes(settings);
+    }
+
+    private void RefreshTemperatureRecipes(RecipeSettings settings)
+    {
+        var selectedCode = SelectedTemperatureRecipe?.Code;
+        var savedRecipes = BuildRecipeMetadataLookup(settings);
 
         _suppressRecipeIndexWrite = true;
         try
@@ -549,7 +561,9 @@ public sealed class TemperatureMonitorViewModel : BindableBase
                 TemperatureRecipes.Add(new TemperatureRecipeOption(index, code, name));
             }
 
-            SelectedTemperatureRecipe = TemperatureRecipes.FirstOrDefault();
+            SelectedTemperatureRecipe = selectedCode is null
+                ? TemperatureRecipes.FirstOrDefault()
+                : TemperatureRecipes.FirstOrDefault(recipe => recipe.Code == selectedCode) ?? TemperatureRecipes.FirstOrDefault();
         }
         finally
         {
@@ -557,20 +571,25 @@ public sealed class TemperatureMonitorViewModel : BindableBase
         }
     }
 
-    private Dictionary<string, RecipeMetadata> LoadSavedRecipeMetadata()
+    private RecipeSettings LoadSavedRecipeSettings()
     {
         try
         {
-            return _recipeConfigStore.Load()
-                .Recipes
-                .Where(recipe => string.IsNullOrWhiteSpace(recipe.Code) == false)
-                .GroupBy(recipe => recipe.Code)
-                .ToDictionary(group => group.Key, group => group.Last());
+            return _recipeConfigStore.Load();
         }
         catch
         {
-            return [];
+            return new RecipeSettings();
         }
+    }
+
+    private static Dictionary<string, RecipeMetadata> BuildRecipeMetadataLookup(RecipeSettings settings)
+    {
+        return settings
+            .Recipes
+            .Where(recipe => string.IsNullOrWhiteSpace(recipe.Code) == false)
+            .GroupBy(recipe => recipe.Code)
+            .ToDictionary(group => group.Key, group => group.Last());
     }
 
     private void UpdateAxisWindow()

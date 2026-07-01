@@ -15,6 +15,8 @@ public sealed class RecipeConfigStore : IRecipeConfigStore
 
     private readonly string _filePath;
 
+    public event EventHandler<RecipeSettings>? SettingsSaved;
+
     public RecipeConfigStore()
         : this(Path.Combine(AppContext.BaseDirectory, "Config", "RecipeSettings.json"))
     {
@@ -50,6 +52,7 @@ public sealed class RecipeConfigStore : IRecipeConfigStore
             var json = JsonSerializer.Serialize(settings, JsonOptions);
             File.WriteAllText(temporaryPath, json);
             File.Move(temporaryPath, _filePath, true);
+            SettingsSaved?.Invoke(this, settings);
         }
         finally
         {

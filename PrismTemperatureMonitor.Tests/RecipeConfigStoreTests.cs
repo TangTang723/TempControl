@@ -61,4 +61,48 @@ public sealed class RecipeConfigStoreTests
         Assert.Equal(string.Empty, loaded.PlcIpAddress);
         Assert.Empty(loaded.Recipes);
     }
+
+    [Fact]
+    public void Save_RaisesSettingsSavedAfterFileIsWritten()
+    {
+        var filePath = Path.Combine(Path.GetTempPath(), $"RecipeSettingsSaved-{Guid.NewGuid():N}.json");
+        try
+        {
+            var store = new RecipeConfigStore(filePath);
+            RecipeSettings? savedSettings = null;
+            store.SettingsSaved += (_, settings) => savedSettings = settings;
+            var settings = new RecipeSettings
+            {
+                Recipes =
+                [
+                    new RecipeMetadata
+                    {
+                        Code = "R002",
+                        Name = "修改后的配方",
+                        StartByteOffset = 324
+                    }
+                ]
+            };
+
+            store.Save(settings);
+
+            Assert.True(File.Exists(filePath));
+            Assert.NotNull(savedSettings);
+            Assert.Equal("R002", savedSettings.Recipes.Single().Code);
+            Assert.Equal("修改后的配方", savedSettings.Recipes.Single().Name);
+        }
+        finally
+        {
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+
+            var temporaryPath = filePath + ".tmp";
+            if (File.Exists(temporaryPath))
+            {
+                File.Delete(temporaryPath);
+            }
+        }
+    }
 }

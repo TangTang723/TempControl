@@ -26,13 +26,13 @@ public sealed class TemperatureMonitorViewModelTests
     }
 
     [Fact]
-    public void NewViewModel_ConnectsPlcOnStartup()
+    public void NewViewModel_DoesNotConnectPlcOnStartup()
     {
         var plc = new RecordingTemperaturePlcService();
 
         _ = CreateViewModel(plcService: plc);
 
-        Assert.Equal(1, plc.ConnectCount);
+        Assert.Equal(0, plc.ConnectCount);
     }
 
     [Fact]
@@ -270,6 +270,38 @@ public sealed class TemperatureMonitorViewModelTests
         Assert.Equal(2, write.Value);
     }
 
+    [Fact]
+    public void RecipeConfigSaved_RefreshesRecipeNamesWithoutWritingRecipeIndexAgain()
+    {
+        var plc = new RecordingTemperaturePlcService();
+        var store = new RecordingRecipeConfigStore
+        {
+            LoadedSettings = new RecipeSettings
+            {
+                Recipes =
+                [
+                    new RecipeMetadata { Code = "R002", Name = "150H-B002", StartByteOffset = 324 }
+                ]
+            }
+        };
+        var viewModel = CreateViewModel(plcService: plc, recipeStore: store);
+        viewModel.SelectedTemperatureRecipe = viewModel.TemperatureRecipes[1];
+        plc.IntWrites.Clear();
+
+        store.RaiseSettingsSaved(new RecipeSettings
+        {
+            Recipes =
+            [
+                new RecipeMetadata { Code = "R002", Name = "修改后的配方", StartByteOffset = 324 }
+            ]
+        });
+
+        Assert.Equal("修改后的配方", viewModel.TemperatureRecipes[1].Name);
+        Assert.Equal("R002", viewModel.SelectedTemperatureRecipe?.Code);
+        Assert.Equal("修改后的配方", viewModel.SelectedTemperatureRecipe?.Name);
+        Assert.Empty(plc.IntWrites);
+    }
+
     private static TemperatureMonitorViewModel CreateViewModel(
         ITemperatureHistoryWriter? historyWriter = null,
         IPlcService? plcService = null,
@@ -448,12 +480,20 @@ public sealed class TemperatureMonitorViewModelTests
 
     private sealed class RecordingRecipeConfigStore : IRecipeConfigStore
     {
+        public event EventHandler<RecipeSettings>? SettingsSaved;
+
         public RecipeSettings LoadedSettings { get; set; } = new();
 
         public RecipeSettings Load() => LoadedSettings;
 
         public void Save(RecipeSettings settings)
         {
+            RaiseSettingsSaved(settings);
+        }
+
+        public void RaiseSettingsSaved(RecipeSettings settings)
+        {
+            SettingsSaved?.Invoke(this, settings);
         }
     }
 }

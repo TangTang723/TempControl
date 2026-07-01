@@ -240,6 +240,8 @@ public sealed class RecipeViewModelTests
 
     private sealed class RecordingRecipeConfigStore : IRecipeConfigStore
     {
+        public event EventHandler<RecipeSettings>? SettingsSaved;
+
         public RecipeSettings LoadedSettings { get; set; } = new();
 
         public RecipeSettings? SavedSettings { get; private set; }
@@ -277,6 +279,7 @@ public sealed class RecipeViewModelTests
                     })
                     .ToList()
             };
+            SettingsSaved?.Invoke(this, settings);
         }
     }
 
