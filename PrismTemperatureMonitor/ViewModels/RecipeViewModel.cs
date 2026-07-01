@@ -60,6 +60,10 @@ public sealed class RecipeViewModel : BindableBase
         _suppressAutoRead = true;
         SelectedRecipe = Recipes[0];
         _suppressAutoRead = false;
+        if (_plcService.IsConnected)
+        {
+            ReadSelectedRecipe();
+        }
 
         if (!string.IsNullOrWhiteSpace(configurationMessage))
         {

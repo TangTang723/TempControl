@@ -212,6 +212,24 @@ public sealed class RecipeViewModelTests
     }
 
     [Fact]
+    public void NewViewModel_WhenPlcConnectedLoadsFirstRecipeValues()
+    {
+        var plc = new RecordingPlcService();
+        plc.Connect();
+        plc.FloatValues[new PlcAddress(15, 0, PlcValueType.Float)] = 12.5f;
+        plc.IntValues[new PlcAddress(15, 8, PlcValueType.Int)] = 6;
+        plc.IntValues[new PlcAddress(15, 10, PlcValueType.Int)] = 1;
+
+        var viewModel = CreateViewModel(plc);
+
+        Assert.Equal(viewModel.Recipes[0], viewModel.SelectedRecipe);
+        Assert.Equal("12.5", GetParameter(viewModel.Recipes[0], "YAbsolutePositionSpeed").Value);
+        Assert.Equal("6", GetParameter(viewModel.Recipes[0], "WeldPassCount").Value);
+        Assert.Equal("1", GetParameter(viewModel.Recipes[0], "Weld1WaveNumber").Value);
+        Assert.Contains(new PlcAddress(15, 0, PlcValueType.Float), plc.ReadAddresses);
+    }
+
+    [Fact]
     public void ReadSelectedRecipeCommand_ShowsErrorWhenPlcReadFails()
     {
         var plc = new RecordingPlcService { ThrowOnRead = true };
