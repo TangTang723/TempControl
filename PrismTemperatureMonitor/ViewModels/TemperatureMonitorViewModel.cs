@@ -25,10 +25,12 @@ public sealed class TemperatureMonitorViewModel : BindableBase
     public static readonly PlcAddress PlcTemperatureResultAddress = new(16, 102, PlcValueType.Bool, 4);
     public static readonly PlcAddress PlcRecipeIndexAddress = new(16, 0, PlcValueType.Int);
     public static readonly PlcAddress PlcLaserRealtimePowerAddress = new(16, 2, PlcValueType.Float);
+    public static readonly PlcAddress PlcMesRecipeRecordTriggerAddress = new(16, 102, PlcValueType.Bool, 3);
 
     private readonly ObservableCollection<ObservablePoint> _temperatureValues = [];
     private readonly TemperatureChartBuffer _chartBuffer;
     private readonly ITemperatureHistoryWriter _historyWriter;
+    private readonly IMesRecipeRecordWriter _mesRecipeRecordWriter;
     private readonly ILaserDeviceService _laserDeviceService;
     private readonly IPlcService _plcService;
     private readonly IRecipeConfigStore _recipeConfigStore;
@@ -61,9 +63,11 @@ public sealed class TemperatureMonitorViewModel : BindableBase
         ITemperatureHistoryWriter historyWriter,
         ILaserDeviceService laserDeviceService,
         IPlcService plcService,
-        IRecipeConfigStore recipeConfigStore)
+        IRecipeConfigStore recipeConfigStore,
+        IMesRecipeRecordWriter mesRecipeRecordWriter)
     {
         _historyWriter = historyWriter;
+        _mesRecipeRecordWriter = mesRecipeRecordWriter;
         _laserDeviceService = laserDeviceService;
         _plcService = plcService;
         _recipeConfigStore = recipeConfigStore;
@@ -72,7 +76,7 @@ public sealed class TemperatureMonitorViewModel : BindableBase
         _axisStartTime = DateTime.Now;
         _latestSampleTime = _axisStartTime;
         LoadTemperatureRecipes();
-        //ConnectPlcOnStartup();
+        ConnectPlcOnStartup();
 
         Series =
         [
@@ -398,6 +402,8 @@ public sealed class TemperatureMonitorViewModel : BindableBase
                 CollectionStateBrush = new SolidColorBrush(Color.FromRgb(239, 68, 68));
                 return;
             }
+            SaveMesRecipeRecordIfRequested();
+
             var acquisitionSignal = _plcService.ReadBool(PlcAcquisitionStartAddress);
             if (acquisitionSignal && !_lastPlcAcquisitionSignal)
             {
@@ -569,6 +575,58 @@ public sealed class TemperatureMonitorViewModel : BindableBase
         {
             _suppressRecipeIndexWrite = false;
         }
+    }
+
+    private void SaveMesRecipeRecordIfRequested()
+    {
+        if (!_plcService.ReadBool(PlcMesRecipeRecordTriggerAddress))
+        {
+            return;
+        }
+
+        _plcService.WriteBool(PlcMesRecipeRecordTriggerAddress, false);
+        _mesRecipeRecordWriter.Append(ReadMesRecipeRecordFromPlc());
+    }
+
+    private MesRecipeRecord ReadMesRecipeRecordFromPlc()
+    {
+        var record = new MesRecipeRecord
+        {
+            Timestamp = DateTime.Now,
+            YAbsolutePositionSpeed = _plcService.ReadFloat(new PlcAddress(16, 130, PlcValueType.Float)),
+            ZAbsolutePositionSpeed = _plcService.ReadFloat(new PlcAddress(16, 134, PlcValueType.Float)),
+            WeldPassCount = _plcService.ReadInt(new PlcAddress(16, 138, PlcValueType.Int))
+        };
+
+        for (var index = 0; index < 6; index++)
+        {
+            record.WeldPasses.Add(ReadMesWeldPassFromPlc(index));
+        }
+
+        return record;
+    }
+
+    private MesWeldPassRecord ReadMesWeldPassFromPlc(int index)
+    {
+        var weldNumber = index + 1;
+        var actualPowerOffset = 106 + (index * 4);
+        var weldBaseOffset = 140 + (index * 42);
+        return new MesWeldPassRecord
+        {
+            Index = weldNumber,
+            ActualPower = _plcService.ReadInt(new PlcAddress(16, actualPowerOffset, PlcValueType.DInt)),
+            WaveNumber = _plcService.ReadInt(new PlcAddress(16, weldBaseOffset, PlcValueType.Int)),
+            RSpeed = _plcService.ReadFloat(new PlcAddress(16, weldBaseOffset + 2, PlcValueType.Float)),
+            YPosition = _plcService.ReadFloat(new PlcAddress(16, weldBaseOffset + 6, PlcValueType.Float)),
+            ZPosition = _plcService.ReadFloat(new PlcAddress(16, weldBaseOffset + 10, PlcValueType.Float)),
+            RPreAngle = _plcService.ReadFloat(new PlcAddress(16, weldBaseOffset + 14, PlcValueType.Float)),
+            RPosition = _plcService.ReadFloat(new PlcAddress(16, weldBaseOffset + 18, PlcValueType.Float)),
+            RPostAngle = _plcService.ReadFloat(new PlcAddress(16, weldBaseOffset + 22, PlcValueType.Float)),
+            TemperatureUpperLimit = _plcService.ReadFloat(new PlcAddress(16, weldBaseOffset + 26, PlcValueType.Float)),
+            TemperatureLowerLimit = _plcService.ReadFloat(new PlcAddress(16, weldBaseOffset + 30, PlcValueType.Float)),
+            LaserPowerUpperLimit = _plcService.ReadFloat(new PlcAddress(16, weldBaseOffset + 34, PlcValueType.Float)),
+            LaserPowerLowerLimit = _plcService.ReadFloat(new PlcAddress(16, weldBaseOffset + 38, PlcValueType.Float))
+        };
     }
 
     private RecipeSettings LoadSavedRecipeSettings()

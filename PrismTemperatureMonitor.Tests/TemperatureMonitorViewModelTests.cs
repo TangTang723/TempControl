@@ -26,13 +26,13 @@ public sealed class TemperatureMonitorViewModelTests
     }
 
     [Fact]
-    public void NewViewModel_DoesNotConnectPlcOnStartup()
+    public void NewViewModel_ConnectsPlcOnStartup()
     {
         var plc = new RecordingTemperaturePlcService();
 
         _ = CreateViewModel(plcService: plc);
 
-        Assert.Equal(0, plc.ConnectCount);
+        Assert.Equal(1, plc.ConnectCount);
     }
 
     [Fact]
@@ -302,17 +302,55 @@ public sealed class TemperatureMonitorViewModelTests
         Assert.Empty(plc.IntWrites);
     }
 
+    [Fact]
+    public void PlcMesRecordSignal_WritesCsvRecordAndResetsTrigger()
+    {
+        var plc = new RecordingTemperaturePlcService();
+        var recordWriter = new RecordingMesRecipeRecordWriter();
+        plc.BoolValues[TemperatureMonitorViewModel.PlcMesRecipeRecordTriggerAddress] = true;
+        plc.FloatValues[new PlcAddress(16, 130, PlcValueType.Float)] = 130.5f;
+        plc.FloatValues[new PlcAddress(16, 134, PlcValueType.Float)] = 134.5f;
+        plc.IntValues[new PlcAddress(16, 138, PlcValueType.Int)] = 6;
+        plc.IntValues[new PlcAddress(16, 106, PlcValueType.DInt)] = 1001;
+        plc.IntValues[new PlcAddress(16, 110, PlcValueType.DInt)] = 1002;
+        plc.IntValues[new PlcAddress(16, 140, PlcValueType.Int)] = 1;
+        plc.FloatValues[new PlcAddress(16, 142, PlcValueType.Float)] = 142.5f;
+        plc.FloatValues[new PlcAddress(16, 178, PlcValueType.Float)] = 178.5f;
+        plc.IntValues[new PlcAddress(16, 182, PlcValueType.Int)] = 2;
+        plc.FloatValues[new PlcAddress(16, 220, PlcValueType.Float)] = 220.5f;
+        var viewModel = CreateViewModel(plcService: plc, mesRecipeRecordWriter: recordWriter);
+
+        viewModel.PollPlcForTest();
+
+        var triggerWrite = Assert.Single(plc.BoolWrites);
+        Assert.Equal(TemperatureMonitorViewModel.PlcMesRecipeRecordTriggerAddress, triggerWrite.Address);
+        Assert.False(triggerWrite.Value);
+        var record = Assert.Single(recordWriter.Records);
+        Assert.Equal(130.5, record.YAbsolutePositionSpeed, 1);
+        Assert.Equal(134.5, record.ZAbsolutePositionSpeed, 1);
+        Assert.Equal(6, record.WeldPassCount);
+        Assert.Equal(1001, record.WeldPasses[0].ActualPower);
+        Assert.Equal(1, record.WeldPasses[0].WaveNumber);
+        Assert.Equal(142.5, record.WeldPasses[0].RSpeed, 1);
+        Assert.Equal(178.5, record.WeldPasses[0].LaserPowerLowerLimit, 1);
+        Assert.Equal(1002, record.WeldPasses[1].ActualPower);
+        Assert.Equal(2, record.WeldPasses[1].WaveNumber);
+        Assert.Equal(220.5, record.WeldPasses[1].LaserPowerLowerLimit, 1);
+    }
+
     private static TemperatureMonitorViewModel CreateViewModel(
         ITemperatureHistoryWriter? historyWriter = null,
         IPlcService? plcService = null,
         IRecipeConfigStore? recipeStore = null,
-        ILaserDeviceService? laserService = null)
+        ILaserDeviceService? laserService = null,
+        IMesRecipeRecordWriter? mesRecipeRecordWriter = null)
     {
         return new TemperatureMonitorViewModel(
             historyWriter ?? new RecordingTemperatureHistoryWriter(),
             laserService ?? new RecordingLaserCacheService(),
             plcService ?? new RecordingTemperaturePlcService(),
-            recipeStore ?? new RecordingRecipeConfigStore());
+            recipeStore ?? new RecordingRecipeConfigStore(),
+            mesRecipeRecordWriter ?? new RecordingMesRecipeRecordWriter());
     }
 
     private static IReadOnlyList<LiveChartsCore.Defaults.ObservablePoint> GetSeriesValues(
@@ -419,7 +457,11 @@ public sealed class TemperatureMonitorViewModelTests
     {
         public Dictionary<PlcAddress, bool> BoolValues { get; } = [];
 
+        public Dictionary<PlcAddress, int> IntValues { get; } = [];
+
         public Dictionary<PlcAddress, float> FloatValues { get; } = [];
+
+        public List<(PlcAddress Address, bool Value)> BoolWrites { get; } = [];
 
         public List<(PlcAddress Address, int Value)> IntWrites { get; } = [];
 
@@ -449,7 +491,7 @@ public sealed class TemperatureMonitorViewModelTests
 
         public int ReadInt(PlcAddress address)
         {
-            return 0;
+            return IntValues.GetValueOrDefault(address);
         }
 
         public float ReadFloat(PlcAddress address)
@@ -459,6 +501,7 @@ public sealed class TemperatureMonitorViewModelTests
 
         public void WriteBool(PlcAddress address, bool value)
         {
+            BoolWrites.Add((address, value));
             BoolValues[address] = value;
         }
 
@@ -475,6 +518,16 @@ public sealed class TemperatureMonitorViewModelTests
         {
             FloatWrites.Add((address, value));
             FloatValues[address] = value;
+        }
+    }
+
+    private sealed class RecordingMesRecipeRecordWriter : IMesRecipeRecordWriter
+    {
+        public List<MesRecipeRecord> Records { get; } = [];
+
+        public void Append(MesRecipeRecord record)
+        {
+            Records.Add(record);
         }
     }
 

@@ -26,6 +26,7 @@ public partial class App : PrismApplication
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
         containerRegistry.RegisterSingleton<ITemperatureHistoryWriter, TemperatureHistoryWriter>();
+        containerRegistry.RegisterSingleton<IMesRecipeRecordWriter, MesRecipeRecordWriter>();
         containerRegistry.RegisterInstance<IPlcService>(PlcService.Instance);
         containerRegistry.RegisterSingleton<IRecipeConfigStore, RecipeConfigStore>();
         containerRegistry.RegisterSingleton<ILaserDeviceConfigStore, LaserDeviceConfigStore>();
