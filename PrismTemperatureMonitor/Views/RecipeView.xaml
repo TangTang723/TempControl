@@ -69,7 +69,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.02*" MinWidth="410" />
                 <ColumnDefinition Width="18" />
-                <ColumnDefinition Width="1.38*" MinWidth="580" />
+                <ColumnDefinition Width="1.38*" MinWidth="640" />
             </Grid.ColumnDefinitions>
 
             <Border Style="{StaticResource PanelCardStyle}" Grid.Column="0">
@@ -121,7 +121,7 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="编号" Binding="{Binding Code}" Width="88" IsReadOnly="True" />
                             <DataGridTextColumn Header="配方名称" Binding="{Binding Name}" Width="*" IsReadOnly="True" />
-                            <DataGridTextColumn Header="起始地址" Binding="{Binding StartByteOffset, StringFormat=DB1.DBB{0}}" Width="120" IsReadOnly="True" />
+                            <DataGridTextColumn Header="起始地址" Binding="{Binding StartByteOffset, StringFormat=DB15.DBB{0}}" Width="130" IsReadOnly="True" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -148,7 +148,7 @@
                                        HorizontalAlignment="Right"
                                        FontSize="16"
                                        FontWeight="SemiBold" />
-                            <TextBlock Text="{Binding SelectedRecipe.StartByteOffset, StringFormat=PLC 起始地址 DB1.DBB{0}}"
+                            <TextBlock Text="{Binding SelectedRecipe.StartByteOffset, StringFormat=PLC 起始地址 DB15.DBB{0}}"
                                        HorizontalAlignment="Right"
                                        Foreground="{StaticResource SecondaryTextBrush}"
                                        FontSize="12"
@@ -177,10 +177,10 @@
                                                     <DataTemplate>
                                                         <Grid Margin="0,0,0,8">
                                                             <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="130" />
-                                                                <ColumnDefinition Width="120" />
-                                                                <ColumnDefinition Width="70" />
-                                                                <ColumnDefinition Width="130" />
+                                                                <ColumnDefinition Width="150" />
+                                                                <ColumnDefinition Width="105" />
+                                                                <ColumnDefinition Width="60" />
+                                                                <ColumnDefinition Width="125" />
                                                                 <ColumnDefinition Width="*" />
                                                             </Grid.ColumnDefinitions>
 
@@ -254,7 +254,7 @@
                          Text="{Binding EditStartByteOffset, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource InputTextBoxStyle}"
                          Margin="0,0,10,0"
-                         ToolTip="起始地址字节偏移，例如 0、64、128" />
+                         ToolTip="起始地址字节偏移，例如 0、324、648" />
 
                 <Button Grid.Column="4"
                         Content="修改"

@@ -15,9 +15,25 @@ public sealed class RecipeViewModelTests
         Assert.All(viewModel.Recipes, recipe => Assert.Equal("厚片工艺", recipe.Type));
         Assert.Equal("R001", viewModel.Recipes[0].Code);
         Assert.Equal("150H-B001", viewModel.Recipes[0].Name);
-        Assert.Equal(new PlcAddress(1, 0, PlcValueType.Float), GetParameter(viewModel.Recipes[0], "TargetTemperature").Address);
-        Assert.Equal(new PlcAddress(1, 64, PlcValueType.Float), GetParameter(viewModel.Recipes[1], "TargetTemperature").Address);
-        Assert.Equal(new PlcAddress(1, 960, PlcValueType.Float), GetParameter(viewModel.Recipes[15], "TargetTemperature").Address);
+        Assert.Equal(new PlcAddress(15, 0, PlcValueType.Float), GetParameter(viewModel.Recipes[0], "YAbsolutePositionSpeed").Address);
+        Assert.Equal(new PlcAddress(15, 324, PlcValueType.Float), GetParameter(viewModel.Recipes[1], "YAbsolutePositionSpeed").Address);
+        Assert.Equal(new PlcAddress(15, 4860, PlcValueType.Float), GetParameter(viewModel.Recipes[15], "YAbsolutePositionSpeed").Address);
+    }
+
+    [Fact]
+    public void NewViewModel_CreatesSixWeldPassesWithExpectedAddressLayout()
+    {
+        var viewModel = CreateViewModel();
+        var recipe = viewModel.Recipes[0];
+
+        Assert.Equal(new PlcAddress(15, 8, PlcValueType.Int), GetParameter(recipe, "WeldPassCount").Address);
+        Assert.Equal(new PlcAddress(15, 10, PlcValueType.Int), GetParameter(recipe, "Weld1WaveNumber").Address);
+        Assert.Equal(new PlcAddress(15, 12, PlcValueType.Float), GetParameter(recipe, "Weld1RSpeed").Address);
+        Assert.Equal(new PlcAddress(15, 48, PlcValueType.Float), GetParameter(recipe, "Weld1LaserPowerLowerLimit").Address);
+        Assert.Equal(new PlcAddress(15, 52, PlcValueType.Int), GetParameter(recipe, "Weld2WaveNumber").Address);
+        Assert.Equal(new PlcAddress(15, 90, PlcValueType.Float), GetParameter(recipe, "Weld2LaserPowerLowerLimit").Address);
+        Assert.Equal(new PlcAddress(15, 220, PlcValueType.Int), GetParameter(recipe, "Weld6WaveNumber").Address);
+        Assert.Equal(new PlcAddress(15, 258, PlcValueType.Float), GetParameter(recipe, "Weld6LaserPowerLowerLimit").Address);
     }
 
     [Fact]
@@ -34,8 +50,10 @@ public sealed class RecipeViewModelTests
         Assert.Equal("R001", selectedRecipe.Code);
         Assert.Equal("200H-D001", selectedRecipe.Name);
         Assert.Equal(512, selectedRecipe.StartByteOffset);
-        Assert.Equal("DB1.DBD512", GetParameter(selectedRecipe, "TargetTemperature").AddressText);
-        Assert.Equal("DB1.DBW524", GetParameter(selectedRecipe, "SegmentCount").AddressText);
+        Assert.Equal("DB15.DBD512", GetParameter(selectedRecipe, "YAbsolutePositionSpeed").AddressText);
+        Assert.Equal("DB15.DBW520", GetParameter(selectedRecipe, "WeldPassCount").AddressText);
+        Assert.Equal("DB15.DBW522", GetParameter(selectedRecipe, "Weld1WaveNumber").AddressText);
+        Assert.Equal("DB15.DBW564", GetParameter(selectedRecipe, "Weld2WaveNumber").AddressText);
         Assert.Equal("200H-D001", store.SavedSettings!.Recipes.Single(recipe => recipe.Code == "R001").Name);
         Assert.Equal(512, store.SavedSettings.Recipes.Single(recipe => recipe.Code == "R001").StartByteOffset);
     }
@@ -51,7 +69,7 @@ public sealed class RecipeViewModelTests
                 PlcIpAddress = "192.168.1.25",
                 Recipes =
                 [
-                    new RecipeMetadata { Code = "R002", Name = "已保存配方", StartByteOffset = 320 },
+                    new RecipeMetadata { Code = "R002", Name = "已保存配方", StartByteOffset = 640 },
                     new RecipeMetadata { Code = "UNKNOWN", Name = "忽略", StartByteOffset = 999 }
                 ]
             }
@@ -62,8 +80,8 @@ public sealed class RecipeViewModelTests
         Assert.Equal("192.168.1.25", viewModel.PlcIpAddress);
         Assert.Equal("192.168.1.25", plc.IpAddress);
         Assert.Equal("已保存配方", viewModel.Recipes[1].Name);
-        Assert.Equal(320, viewModel.Recipes[1].StartByteOffset);
-        Assert.Equal("DB1.DBD320", GetParameter(viewModel.Recipes[1], "TargetTemperature").AddressText);
+        Assert.Equal(640, viewModel.Recipes[1].StartByteOffset);
+        Assert.Equal("DB15.DBD640", GetParameter(viewModel.Recipes[1], "YAbsolutePositionSpeed").AddressText);
         Assert.Equal("150H-B001", viewModel.Recipes[0].Name);
     }
 
@@ -137,56 +155,60 @@ public sealed class RecipeViewModelTests
     }
 
     [Fact]
-    public void ReadSelectedRecipeCommand_LoadsValuesDirectlyByPlcAddress()
+    public void ReadSelectedRecipeCommand_LoadsWeldPassValuesDirectlyByPlcAddress()
     {
         var plc = new RecordingPlcService();
-        plc.FloatValues[new PlcAddress(1, 0, PlcValueType.Float)] = 221.5f;
-        plc.IntValues[new PlcAddress(1, 12, PlcValueType.Int)] = 2;
-        plc.FloatValues[new PlcAddress(1, 16, PlcValueType.Float)] = 180.5f;
-        plc.FloatValues[new PlcAddress(1, 20, PlcValueType.Float)] = 220.5f;
-        plc.BoolValues[new PlcAddress(1, 60, PlcValueType.Bool)] = true;
+        plc.FloatValues[new PlcAddress(15, 0, PlcValueType.Float)] = 20.5f;
+        plc.FloatValues[new PlcAddress(15, 4, PlcValueType.Float)] = 21.5f;
+        plc.IntValues[new PlcAddress(15, 8, PlcValueType.Int)] = 6;
+        plc.IntValues[new PlcAddress(15, 10, PlcValueType.Int)] = 1;
+        plc.FloatValues[new PlcAddress(15, 12, PlcValueType.Float)] = 180.5f;
+        plc.FloatValues[new PlcAddress(15, 48, PlcValueType.Float)] = 30.5f;
+        plc.IntValues[new PlcAddress(15, 52, PlcValueType.Int)] = 2;
+        plc.FloatValues[new PlcAddress(15, 90, PlcValueType.Float)] = 40.5f;
         var viewModel = CreateViewModel(plc);
 
         viewModel.ReadSelectedRecipeCommand.Execute();
 
         var selectedRecipe = viewModel.SelectedRecipe!;
-        Assert.Equal("221.5", GetParameter(selectedRecipe, "TargetTemperature").Value);
-        Assert.Equal("2", GetParameter(selectedRecipe, "SegmentCount").Value);
-        Assert.Equal("180.5", GetParameter(selectedRecipe, "Stage1Temperature").Value);
-        Assert.Equal("220.5", GetParameter(selectedRecipe, "Stage2Temperature").Value);
-        Assert.DoesNotContain(
-            selectedRecipe.ParameterGroups.SelectMany(group => group.Parameters),
-            parameter => parameter.Key.Contains("Time", StringComparison.Ordinal));
-        Assert.Equal("True", GetParameter(selectedRecipe, "Enabled").Value);
-        Assert.Contains(new PlcAddress(1, 0, PlcValueType.Float), plc.ReadAddresses);
-        Assert.Contains(new PlcAddress(1, 12, PlcValueType.Int), plc.ReadAddresses);
-        Assert.Contains(new PlcAddress(1, 16, PlcValueType.Float), plc.ReadAddresses);
-        Assert.Contains(new PlcAddress(1, 20, PlcValueType.Float), plc.ReadAddresses);
-        Assert.Contains(new PlcAddress(1, 60, PlcValueType.Bool), plc.ReadAddresses);
+        Assert.Equal("20.5", GetParameter(selectedRecipe, "YAbsolutePositionSpeed").Value);
+        Assert.Equal("21.5", GetParameter(selectedRecipe, "ZAbsolutePositionSpeed").Value);
+        Assert.Equal("6", GetParameter(selectedRecipe, "WeldPassCount").Value);
+        Assert.Equal("1", GetParameter(selectedRecipe, "Weld1WaveNumber").Value);
+        Assert.Equal("180.5", GetParameter(selectedRecipe, "Weld1RSpeed").Value);
+        Assert.Equal("30.5", GetParameter(selectedRecipe, "Weld1LaserPowerLowerLimit").Value);
+        Assert.Equal("2", GetParameter(selectedRecipe, "Weld2WaveNumber").Value);
+        Assert.Equal("40.5", GetParameter(selectedRecipe, "Weld2LaserPowerLowerLimit").Value);
+        Assert.Contains(new PlcAddress(15, 0, PlcValueType.Float), plc.ReadAddresses);
+        Assert.Contains(new PlcAddress(15, 8, PlcValueType.Int), plc.ReadAddresses);
+        Assert.Contains(new PlcAddress(15, 52, PlcValueType.Int), plc.ReadAddresses);
+        Assert.Contains(new PlcAddress(15, 90, PlcValueType.Float), plc.ReadAddresses);
     }
 
     [Fact]
     public void SelectingRecipe_LoadsValuesDirectlyBySelectedRecipeAddress()
     {
         var plc = new RecordingPlcService();
-        plc.FloatValues[new PlcAddress(1, 64, PlcValueType.Float)] = 310.2f;
-        plc.IntValues[new PlcAddress(1, 76, PlcValueType.Int)] = 1;
-        plc.FloatValues[new PlcAddress(1, 80, PlcValueType.Float)] = 205.8f;
-        plc.BoolValues[new PlcAddress(1, 124, PlcValueType.Bool)] = true;
+        plc.FloatValues[new PlcAddress(15, 324, PlcValueType.Float)] = 31.2f;
+        plc.IntValues[new PlcAddress(15, 332, PlcValueType.Int)] = 4;
+        plc.IntValues[new PlcAddress(15, 334, PlcValueType.Int)] = 3;
+        plc.FloatValues[new PlcAddress(15, 336, PlcValueType.Float)] = 205.8f;
+        plc.FloatValues[new PlcAddress(15, 414, PlcValueType.Float)] = 55.5f;
         var viewModel = CreateViewModel(plc);
         plc.Connect();
 
         viewModel.SelectedRecipe = viewModel.Recipes[1];
 
         var selectedRecipe = viewModel.SelectedRecipe!;
-        Assert.Equal("310.2", GetParameter(selectedRecipe, "TargetTemperature").Value);
-        Assert.Equal("1", GetParameter(selectedRecipe, "SegmentCount").Value);
-        Assert.Equal("205.8", GetParameter(selectedRecipe, "Stage1Temperature").Value);
-        Assert.Equal("True", GetParameter(selectedRecipe, "Enabled").Value);
-        Assert.Contains(new PlcAddress(1, 64, PlcValueType.Float), plc.ReadAddresses);
-        Assert.Contains(new PlcAddress(1, 76, PlcValueType.Int), plc.ReadAddresses);
-        Assert.Contains(new PlcAddress(1, 80, PlcValueType.Float), plc.ReadAddresses);
-        Assert.Contains(new PlcAddress(1, 124, PlcValueType.Bool), plc.ReadAddresses);
+        Assert.Equal("31.2", GetParameter(selectedRecipe, "YAbsolutePositionSpeed").Value);
+        Assert.Equal("4", GetParameter(selectedRecipe, "WeldPassCount").Value);
+        Assert.Equal("3", GetParameter(selectedRecipe, "Weld1WaveNumber").Value);
+        Assert.Equal("205.8", GetParameter(selectedRecipe, "Weld1RSpeed").Value);
+        Assert.Equal("55.5", GetParameter(selectedRecipe, "Weld2LaserPowerLowerLimit").Value);
+        Assert.Contains(new PlcAddress(15, 324, PlcValueType.Float), plc.ReadAddresses);
+        Assert.Contains(new PlcAddress(15, 332, PlcValueType.Int), plc.ReadAddresses);
+        Assert.Contains(new PlcAddress(15, 334, PlcValueType.Int), plc.ReadAddresses);
+        Assert.Contains(new PlcAddress(15, 414, PlcValueType.Float), plc.ReadAddresses);
     }
 
     [Fact]

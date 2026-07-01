@@ -12,15 +12,12 @@ namespace PrismTemperatureMonitor.ViewModels;
 public sealed class RecipeViewModel : BindableBase
 {
     private const int RecipeCount = 16;
-    private const int RecipeDbNumber = 1;
+    private const int RecipeDbNumber = 15;
     private const int RecipeStartByte = 0;
-    private const int RecipeStrideBytes = 64;
-    private const int SegmentCountOffset = 12;
-    private const int SegmentTemperatureStartOffset = 16;
-    private const int SegmentTemperatureStrideBytes = 4;
-    private const int MaxSegmentCount = 8;
-    private const string SegmentTemperatureGroupName = "分段温度";
-    private const string SegmentCountKey = "SegmentCount";
+    private const int RecipeStrideBytes = 324;
+    private const int WeldPassCount = 6;
+    private const int WeldPassStartOffset = 10;
+    private const int WeldPassStrideBytes = 42;
     private const string DefaultRecipeType = "厚片工艺";
 
     private readonly IPlcService _plcService;
@@ -92,7 +89,7 @@ public sealed class RecipeViewModel : BindableBase
                     ? "当前没有选中配方。"
                     : $"当前配方：{value.Name}，PLC 起始地址：DB{RecipeDbNumber}.DBB{value.StartByteOffset}。";
 
-                if (value is not null && !_suppressAutoRead&&_plcService.IsConnected)
+                if (value is not null && !_suppressAutoRead && _plcService.IsConnected)
                 {
                     ReadSelectedRecipe();
                 }
@@ -156,15 +153,22 @@ public sealed class RecipeViewModel : BindableBase
 
     private void ConnectPlc()
     {
-        RunPlcOperation(() =>
+        try
         {
-            _plcService.IpAddress = PlcIpAddress;
-            _plcService.Connect();
-            PlcState = _plcService.IsConnected ? "已连接" : "未连接";
-            OperationMessage = $"PLC 已连接：{PlcIpAddress}";
-        });
-        bool t = _plcService.ReadBool(new PlcAddress(6, 96, PlcValueType.Bool, 4));
-      
+            RunPlcOperation(() =>
+            {
+                _plcService.IpAddress = PlcIpAddress;
+                _plcService.Connect();
+                PlcState = _plcService.IsConnected ? "已连接" : "未连接";
+                OperationMessage = $"PLC 已连接：{PlcIpAddress}";
+            });
+
+            _plcService.ReadBool(new PlcAddress(6, 96, PlcValueType.Bool, 4));
+        }
+        catch (Exception ex)
+        {
+            OperationMessage = $"PLC 连接失败：{ex.Message}";
+        }
     }
 
     private bool CanReadSelectedRecipe()
@@ -181,18 +185,9 @@ public sealed class RecipeViewModel : BindableBase
 
         RunPlcOperation(() =>
         {
-            foreach (var group in SelectedRecipe.ParameterGroups)
+            foreach (var parameter in SelectedRecipe.ParameterGroups.SelectMany(group => group.Parameters))
             {
-                if (group.Name == SegmentTemperatureGroupName)
-                {
-                    ReadSegmentTemperatures(SelectedRecipe, group);
-                    continue;
-                }
-
-                foreach (var parameter in group.Parameters)
-                {
-                    parameter.Value = ReadParameterValue(parameter);
-                }
+                parameter.Value = ReadParameterValue(parameter);
             }
 
             PlcState = _plcService.IsConnected ? "已连接" : "未连接";
@@ -227,21 +222,6 @@ public sealed class RecipeViewModel : BindableBase
             PlcValueType.Float => _plcService.ReadFloat(parameter.Address).ToString("0.###", CultureInfo.InvariantCulture),
             _ => throw new InvalidOperationException($"不支持的 PLC 数据类型：{parameter.Address.ValueType}")
         };
-    }
-
-    private void ReadSegmentTemperatures(RecipeDefinition recipe, RecipeParameterGroup group)
-    {
-        var segmentCountParameter = group.Parameters.Single(parameter => parameter.Key == SegmentCountKey);
-        var rawSegmentCount = _plcService.ReadInt(segmentCountParameter.Address);
-        var segmentCount = Math.Clamp(rawSegmentCount, 0, MaxSegmentCount);
-        segmentCountParameter.Value = segmentCount.ToString(CultureInfo.InvariantCulture);
-
-        RebuildSegmentTemperatureParameters(recipe, group, segmentCount);
-
-        foreach (var parameter in group.Parameters.Where(parameter => parameter.Key != SegmentCountKey))
-        {
-            parameter.Value = ReadParameterValue(parameter);
-        }
     }
 
     private bool CanApplySelectedRecipe()
@@ -363,24 +343,40 @@ public sealed class RecipeViewModel : BindableBase
             Code = $"R{index + 1:000}",
             Name = index < 3 ? new[] { "150H-B001", "150H-B002", "180H-C001" }[index] : $"厚片配方-{index + 1:00}",
             Type = DefaultRecipeType,
-            Description = "厚片材料分段升温参数",
+            Description = "厚片材料焊道工艺参数",
             StartByteOffset = startByte
         };
 
-        recipe.ParameterGroups.Add(CreateGroup("基础设置",
-            ("TargetTemperature", "目标温度", 0, PlcValueType.Float, "°C", "厚片目标温度"),
-            ("TemperatureUpperLimit", "温度上限", 4, PlcValueType.Float, "°C", "厚片保护上限"),
-            ("TemperatureLowerLimit", "温度下限", 8, PlcValueType.Float, "°C", "厚片有效温区下限")));
-        recipe.ParameterGroups.Add(CreateGroup(SegmentTemperatureGroupName,
-            (SegmentCountKey, "分段数", SegmentCountOffset, PlcValueType.Int, "段", "PLC 中配置的温度分段数量")));
-        recipe.ParameterGroups.Add(CreateGroup("激光参考",
-            ("LaserPower", "激光功率", 48, PlcValueType.Float, "%", "厚片参考功率"),
-            ("ScanSpeed", "扫描速度", 52, PlcValueType.Float, "mm/s", "厚片参考速度"),
-            ("RepeatCount", "重复次数", 56, PlcValueType.Int, "次", "加工循环次数"),
-            ("Enabled", "启用配方", 60, PlcValueType.Bool, "", "PLC 中该配方启用标志")));
+        recipe.ParameterGroups.Add(CreateGroup("配方参数",
+            ("YAbsolutePositionSpeed", "Y轴绝对定位速度", 0, PlcValueType.Float, "mm/s", "Y轴定位速度"),
+            ("ZAbsolutePositionSpeed", "Z轴绝对定位速度", 4, PlcValueType.Float, "mm/s", "Z轴定位速度"),
+            ("WeldPassCount", "焊道数量选择", 8, PlcValueType.Int, "道", "当前配方启用的焊道数量")));
+
+        for (var weldIndex = 0; weldIndex < WeldPassCount; weldIndex++)
+        {
+            recipe.ParameterGroups.Add(CreateWeldPassGroup(weldIndex));
+        }
 
         RefreshParameterAddresses(recipe);
         return recipe;
+    }
+
+    private static RecipeParameterGroup CreateWeldPassGroup(int weldIndex)
+    {
+        var weldNumber = weldIndex + 1;
+        var baseOffset = WeldPassStartOffset + (weldIndex * WeldPassStrideBytes);
+        return CreateGroup($"焊道{weldNumber}",
+            ($"Weld{weldNumber}WaveNumber", "焊接波形", baseOffset, PlcValueType.Int, "", "焊接使用的激光波形编号"),
+            ($"Weld{weldNumber}RSpeed", "R轴速度", baseOffset + 2, PlcValueType.Float, "deg/s", "R轴旋转速度"),
+            ($"Weld{weldNumber}YPosition", "Y轴位置", baseOffset + 6, PlcValueType.Float, "mm", "焊接 Y 轴位置"),
+            ($"Weld{weldNumber}ZPosition", "Z轴位置", baseOffset + 10, PlcValueType.Float, "mm", "焊接 Z 轴位置"),
+            ($"Weld{weldNumber}RPreAngle", "R轴焊前预留角度", baseOffset + 14, PlcValueType.Float, "deg", "焊接前预留角度"),
+            ($"Weld{weldNumber}RPosition", "R轴位置", baseOffset + 18, PlcValueType.Float, "deg", "焊接 R 轴位置"),
+            ($"Weld{weldNumber}RPostAngle", "R轴焊后预留角度", baseOffset + 22, PlcValueType.Float, "deg", "焊接后预留角度"),
+            ($"Weld{weldNumber}TemperatureUpperLimit", "焊接温度上限", baseOffset + 26, PlcValueType.Float, "℃", "焊接温度上限"),
+            ($"Weld{weldNumber}TemperatureLowerLimit", "焊接温度下限", baseOffset + 30, PlcValueType.Float, "℃", "焊接温度下限"),
+            ($"Weld{weldNumber}LaserPowerUpperLimit", "激光功率上限", baseOffset + 34, PlcValueType.Float, "W", "激光功率上限"),
+            ($"Weld{weldNumber}LaserPowerLowerLimit", "激光功率下限", baseOffset + 38, PlcValueType.Float, "W", "激光功率下限"));
     }
 
     private static RecipeParameterGroup CreateGroup(
@@ -416,39 +412,6 @@ public sealed class RecipeViewModel : BindableBase
             parameter.Address = address;
             parameter.AddressText = address.ToS7Address();
         }
-    }
-
-    private static void RebuildSegmentTemperatureParameters(
-        RecipeDefinition recipe,
-        RecipeParameterGroup group,
-        int segmentCount)
-    {
-        var segmentCountParameter = group.Parameters.Single(parameter => parameter.Key == SegmentCountKey);
-        group.Parameters.Clear();
-        group.Parameters.Add(segmentCountParameter);
-
-        for (var index = 0; index < segmentCount; index++)
-        {
-            group.Parameters.Add(CreateSegmentTemperatureParameter(recipe, index));
-        }
-    }
-
-    private static RecipeParameter CreateSegmentTemperatureParameter(RecipeDefinition recipe, int index)
-    {
-        var relativeOffset = SegmentTemperatureStartOffset + (index * SegmentTemperatureStrideBytes);
-        var address = new PlcAddress(RecipeDbNumber, recipe.StartByteOffset + relativeOffset, PlcValueType.Float);
-        return new RecipeParameter
-        {
-            Key = $"Stage{index + 1}Temperature",
-            Name = $"{index + 1}段温度",
-            Value = "-",
-            Unit = "°C",
-            Remark = $"第 {index + 1} 段目标温度",
-            RelativeOffset = relativeOffset,
-            ValueType = PlcValueType.Float,
-            Address = address,
-            AddressText = address.ToS7Address()
-        };
     }
 }
 
